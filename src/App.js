@@ -8,11 +8,14 @@ class App extends Component {
     super(props);
     this.state = { counter: 0 };
   }
-  incrementCounter = () => this.setState((pervState) => ({ counter: pervState.counter + 1 }));
+  incrementCounter = (incrementValue) => this.setState((pervState) => ({ counter: pervState.counter + incrementValue }));
   render() {
     return (
       <div className="App">
-        <Button onClickFunction={this.incrementCounter}/>
+        <Button incrementValue={1} onClickFunction={this.incrementCounter}/>
+        <Button incrementValue={5} onClickFunction={this.incrementCounter}/>
+        <Button incrementValue={10} onClickFunction={this.incrementCounter}/>
+        <Button incrementValue={100} onClickFunction={this.incrementCounter}/>
         <Result counter={this.state.counter} />
       </div>
     );
