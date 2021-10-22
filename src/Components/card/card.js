@@ -1,4 +1,4 @@
-const Card = ({name,compnay,avatar_url}) => {
+const Card = ({name,company,avatar_url}) => {
   return (
     <div style={{ margin: "1em", display: "flex" }}>
       <img alt="user" src={avatar_url} width="75" height="75" />
@@ -6,7 +6,7 @@ const Card = ({name,compnay,avatar_url}) => {
         <div style={{ fontSize: "1.25em", fontWeight: "bold" }}>
           {name}
         </div>
-        <div>{compnay}</div>
+        <div>{company}</div>
       </div>
     </div>
   );

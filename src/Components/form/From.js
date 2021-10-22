@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component } from "react";
 
 class Form extends Component {
@@ -5,6 +6,10 @@ class Form extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Event: from submit ${this.state.userName}`);
+    axios.get(`https://api.github.com/users/${this.state.userName}`)
+      .then(card => {
+        this.props.onSubmit(card.data);
+      })
   };
   render() {
     return (

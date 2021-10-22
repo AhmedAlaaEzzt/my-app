@@ -1,16 +1,25 @@
 import "./App.css";
 import CardList from "./Components/card-list/card-list";
-import data from "./data/face-data";
 import Form from "./Components/form/From";
-function App() {
-  return (
-    <div className="">
-      <div style={{margin:"20px"}}>
-        <Form />
-        <CardList cards={data} />
+import { Component } from "react";
+class App extends Component {
+  state={cards:[]}
+  addNewUser=(user)=>{
+    this.setState(prevState => ({
+      cards: prevState.cards.concat(user)
+    }))
+  }
+  render(){
+    return (
+      <div className="">
+        <div style={{margin:"20px"}}>
+          <Form onSubmit={this.addNewUser}/>
+          <CardList cards={this.state.cards} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
 }
 
 export default App;
