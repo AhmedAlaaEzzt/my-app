@@ -1,12 +1,12 @@
-const Card = (props) => {
+const Card = ({name,company,img}) => {
   return (
     <div style={{ margin: "1em", display: "flex" }}>
-      <img alt="user" src="http://placehold.it/75" />
+      <img alt="user" src={img} width="75" height="75" />
       <div style={{marginLeft: 10 }}>
         <div style={{ fontSize: "1.25em", fontWeight: "bold" }}>
-          Name here...
+          {name}
         </div>
-        <div>Company Name here ...</div>
+        <div>{company}</div>
       </div>
     </div>
   );
