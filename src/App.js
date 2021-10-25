@@ -1,12 +1,16 @@
-import Game from './components/game/game';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div>
-      <Game />
-    </div>
-  );
+import Game from "./components/game/game.js";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Game />
+      </div>
+    );
+  }
 }
 
 export default App;

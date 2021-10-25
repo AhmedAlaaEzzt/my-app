@@ -6,11 +6,14 @@ import Answer from "../answer/answer.js";
 class Game extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <h3>Play Nine</h3>
-        <Stars />
-        <Button />
-        <Answer />
+        <hr />
+        <div className="row">
+          <Stars />
+          <Button />
+          <Answer />
+        </div>
       </div>
     );
   }
