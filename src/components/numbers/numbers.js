@@ -1,4 +1,5 @@
 import React from "react";
+import "./numbers.css";
 const Numbers = function() {
   return (
     <div className="card text-center">
