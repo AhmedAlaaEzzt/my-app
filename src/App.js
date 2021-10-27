@@ -20,7 +20,7 @@ class App extends Component {
          return response.json();
       })
       .then(users => {
-        setTimeout(()=>this.setState({robots: users}), 3000)
+        setTimeout(()=>this.setState({robots: users}), 1)
         
       })
   }
