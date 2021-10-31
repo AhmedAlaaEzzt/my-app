@@ -9,7 +9,7 @@ class Game extends Component {
 
   selectNumber = number => {
     this.setState(prevState => ({
-      selectNumber: prevState.selectedNumbers.push(number)
+      selectedNumbers: prevState.selectedNumbers.concat(number)
     }));
   };
 
