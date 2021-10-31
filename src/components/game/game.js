@@ -5,7 +5,10 @@ import Answer from "../answer/answer.js";
 import Numbers from "../numbers/numbers.js";
 
 class Game extends Component {
-  state = { selectedNumbers: [] };
+  state = {
+    selectedNumbers: [],
+    numberOfStars: Math.trunc(Math.random() * 9) + 1
+  };
 
   selectNumber = number => {
     this.setState(prevState => ({
@@ -19,7 +22,7 @@ class Game extends Component {
         <h3>Play Nine</h3>
         <hr />
         <div className="row">
-          <Stars />
+          <Stars numberOfStars={this.state.numberOfStars} />
           <Button />
           <Answer selectedNumbers={this.state.selectedNumbers} />
         </div>
