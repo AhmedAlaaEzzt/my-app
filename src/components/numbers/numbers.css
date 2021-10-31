@@ -7,3 +7,9 @@ span {
   cursor: pointer;
   text-align: center;
 }
+
+.selected {
+  background-color: #eee;
+  color: #ddd;
+  cursor: not-allowed;
+}

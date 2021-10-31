@@ -24,7 +24,10 @@ class Game extends Component {
           <Answer selectedNumbers={this.state.selectedNumbers} />
         </div>
         <br />
-        <Numbers selectNumber={this.selectNumber} />
+        <Numbers
+          selectedNumbers={this.state.selectedNumbers}
+          selectNumber={this.selectNumber}
+        />
       </div>
     );
   }
