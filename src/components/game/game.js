@@ -11,6 +11,9 @@ class Game extends Component {
   };
 
   selectNumber = number => {
+    if (this.state.selectedNumbers.indexOf(number) >= 0) {
+      return;
+    }
     this.setState(prevState => ({
       selectedNumbers: prevState.selectedNumbers.concat(number)
     }));
