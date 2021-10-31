@@ -5,6 +5,14 @@ import Answer from "../answer/answer.js";
 import Numbers from "../numbers/numbers.js";
 
 class Game extends Component {
+  state = { selectedNumbers: [] };
+
+  selectNumber = number => {
+    this.setState(prevState => ({
+      selectNumber: prevState.selectedNumbers.push(number)
+    }));
+  };
+
   render() {
     return (
       <div className="container">
@@ -13,10 +21,10 @@ class Game extends Component {
         <div className="row">
           <Stars />
           <Button />
-          <Answer />
+          <Answer selectedNumbers={this.state.selectedNumbers} />
         </div>
         <br />
-        <Numbers />
+        <Numbers selectNumber={this.selectNumber} />
       </div>
     );
   }
