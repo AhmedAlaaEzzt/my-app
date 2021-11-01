@@ -7,9 +7,17 @@ import Numbers from "../numbers/numbers.js";
 class Game extends Component {
   state = {
     selectedNumbers: [],
-    numberOfStars: Math.trunc(Math.random() * 9) + 1
+    numberOfStars: Math.trunc(Math.random() * 9) + 1,
+    answerIsCorrect: null
   };
 
+  checkAnswer = () => {
+    this.setState(prevState => ({
+      answerIsCorrect:
+        prevState.numberOfStars ===
+        prevState.selectedNumbers.reduce((acc, n) => acc + n, 0)
+    }));
+  };
   selectNumber = number => {
     if (this.state.selectedNumbers.indexOf(number) >= 0) {
       return;
@@ -33,7 +41,11 @@ class Game extends Component {
         <hr />
         <div className="row">
           <Stars numberOfStars={this.state.numberOfStars} />
-          <Button selectedNumbers={this.state.selectedNumbers} />
+          <Button
+            checkAnswer={this.checkAnswer}
+            answerIsCorrect={this.state.answerIsCorrect}
+            selectedNumbers={this.state.selectedNumbers}
+          />
           <Answer
             unSelectNumber={this.unSelectNumber}
             selectedNumbers={this.state.selectedNumbers}
