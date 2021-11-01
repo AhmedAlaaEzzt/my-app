@@ -23,12 +23,14 @@ class Game extends Component {
       return;
     }
     this.setState(prevState => ({
+      answerIsCorrect: null,
       selectedNumbers: prevState.selectedNumbers.concat(number)
     }));
   };
 
   unSelectNumber = clickedNumber => {
     this.setState(prevState => ({
+      answerIsCorrect: null,
       selectedNumbers: prevState.selectedNumbers.filter(
         number => number !== clickedNumber
       )
