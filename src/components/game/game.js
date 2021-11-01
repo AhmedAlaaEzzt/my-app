@@ -15,7 +15,7 @@ class Game extends Component {
       return;
     }
     this.setState(prevState => ({
-      selectNumber: prevState.selectedNumbers.push(number)
+      selectedNumbers: prevState.selectedNumbers.concat(number)
     }));
   };
 
