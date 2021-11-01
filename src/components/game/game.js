@@ -11,6 +11,15 @@ class Game extends Component {
     numberOfStars: Math.trunc(Math.random() * 9) + 1,
     answerIsCorrect: null
   };
+
+  redraw = () => {
+    this.setState({
+      numberOfStars: 1 + Math.floor(Math.random() * 9),
+      answerIsCorrect: null,
+      selectedNumbers: []
+    });
+  };
+
   acceptAnswer = () => {
     this.setState(prevState => ({
       usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
@@ -57,6 +66,7 @@ class Game extends Component {
             acceptAnswer={this.acceptAnswer}
             answerIsCorrect={this.state.answerIsCorrect}
             selectedNumbers={this.state.selectedNumbers}
+            redraw={this.redraw}
           />
           <Answer
             unSelectNumber={this.unSelectNumber}

@@ -35,7 +35,7 @@ const Button = function(props) {
       {button}
       <br />
       <br />
-      <button className="btn btn-warning  btn-sm">
+      <button className="btn btn-warning  btn-sm" onClick={props.redraw}>
         <i className="fa fa-refresh" /> 0
       </button>
     </div>
