@@ -33,7 +33,7 @@ class Game extends Component {
         <hr />
         <div className="row">
           <Stars numberOfStars={this.state.numberOfStars} />
-          <Button />
+          <Button selectedNumbers={this.state.selectedNumbers} />
           <Answer
             unSelectNumber={this.unSelectNumber}
             selectedNumbers={this.state.selectedNumbers}

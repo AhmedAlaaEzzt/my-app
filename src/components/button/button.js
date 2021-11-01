@@ -1,9 +1,14 @@
 import React from "react";
 
-const Button = function() {
+const Button = function(props) {
   return (
     <div className="col-2">
-      <button>=</button>
+      <button
+        className="btn-primary"
+        disabled={props.selectedNumbers.length === 0}
+      >
+        =
+      </button>
     </div>
   );
 };
