@@ -5,7 +5,9 @@ const Numbers = function(props) {
   const NumberList = range(1, 10);
 
   const numberClassName = number => {
-    if (props.selectedNumbers.indexOf(number) >= 0) {
+    if (props.usedNumbers.indexOf(number) >= 0) {
+      return "used";
+    } else if (props.selectedNumbers.indexOf(number) >= 0) {
       return "selected";
     }
   };

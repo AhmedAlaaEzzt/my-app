@@ -7,8 +7,17 @@ import Numbers from "../numbers/numbers.js";
 class Game extends Component {
   state = {
     selectedNumbers: [],
+    usedNumbers: [],
     numberOfStars: Math.trunc(Math.random() * 9) + 1,
     answerIsCorrect: null
+  };
+  acceptAnswer = () => {
+    this.setState(prevState => ({
+      usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
+      selectedNumbers: [],
+      answerIsCorrect: null,
+      numberOfStars: 1 + Math.floor(Math.random() * 9)
+    }));
   };
 
   checkAnswer = () => {
@@ -45,6 +54,7 @@ class Game extends Component {
           <Stars numberOfStars={this.state.numberOfStars} />
           <Button
             checkAnswer={this.checkAnswer}
+            acceptAnswer={this.acceptAnswer}
             answerIsCorrect={this.state.answerIsCorrect}
             selectedNumbers={this.state.selectedNumbers}
           />
@@ -57,6 +67,7 @@ class Game extends Component {
         <Numbers
           selectedNumbers={this.state.selectedNumbers}
           selectNumber={this.selectNumber}
+          usedNumbers={this.state.usedNumbers}
         />
       </div>
     );
