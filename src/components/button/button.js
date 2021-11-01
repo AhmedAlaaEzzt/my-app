@@ -30,7 +30,16 @@ const Button = function(props) {
       break;
   }
 
-  return <div className="col-2">{button}</div>;
+  return (
+    <div className="col-2 text-center">
+      {button}
+      <br />
+      <br />
+      <button className="btn btn-warning  btn-sm">
+        <i className="fa fa-refresh" /> 0
+      </button>
+    </div>
+  );
 };
 
 export default Button;
