@@ -5,19 +5,24 @@ import Answer from "../answer/answer.js";
 import Numbers from "../numbers/numbers.js";
 
 class Game extends Component {
+  static randomNumber = () => Math.trunc(Math.random() * 9) + 1;
+
   state = {
     selectedNumbers: [],
     usedNumbers: [],
-    numberOfStars: Math.trunc(Math.random() * 9) + 1,
-    answerIsCorrect: null
+    numberOfStars: Game.randomNumber(),
+    answerIsCorrect: null,
+    redraws: 5
   };
 
   redraw = () => {
-    this.setState({
-      numberOfStars: 1 + Math.floor(Math.random() * 9),
+    if (this.state.redraws === 0) return;
+    this.setState(prevState => ({
+      numberOfStars: Game.randomNumber(),
       answerIsCorrect: null,
-      selectedNumbers: []
-    });
+      selectedNumbers: [],
+      redraws: prevState.redraws - 1
+    }));
   };
 
   acceptAnswer = () => {
@@ -25,7 +30,7 @@ class Game extends Component {
       usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
       selectedNumbers: [],
       answerIsCorrect: null,
-      numberOfStars: 1 + Math.floor(Math.random() * 9)
+      numberOfStars: Game.randomNumber()
     }));
   };
 
@@ -67,6 +72,7 @@ class Game extends Component {
             answerIsCorrect={this.state.answerIsCorrect}
             selectedNumbers={this.state.selectedNumbers}
             redraw={this.redraw}
+            redraws={this.state.redraws}
           />
           <Answer
             unSelectNumber={this.unSelectNumber}
