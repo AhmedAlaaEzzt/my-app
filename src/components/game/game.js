@@ -3,7 +3,8 @@ import Stars from "../stars/stars.js";
 import Button from "../button/button.js";
 import Answer from "../answer/answer.js";
 import Numbers from "../numbers/numbers.js";
-
+import DoneFrame from "../done-frame/done-frame.js";
+import { possibleCombinationSum } from "./game-helper.js";
 class Game extends Component {
   static randomNumber = () => Math.trunc(Math.random() * 9) + 1;
 
@@ -59,32 +60,42 @@ class Game extends Component {
       )
     }));
   };
+
   render() {
+    const {
+      numberOfStars,
+      answerIsCorrect,
+      selectedNumbers,
+      usedNumbers,
+      redraws
+    } = this.state;
     return (
       <div className="container">
         <h3>Play Nine</h3>
         <hr />
         <div className="row">
-          <Stars numberOfStars={this.state.numberOfStars} />
+          <Stars numberOfStars={numberOfStars} />
           <Button
             checkAnswer={this.checkAnswer}
             acceptAnswer={this.acceptAnswer}
-            answerIsCorrect={this.state.answerIsCorrect}
-            selectedNumbers={this.state.selectedNumbers}
+            answerIsCorrect={answerIsCorrect}
+            selectedNumbers={selectedNumbers}
             redraw={this.redraw}
-            redraws={this.state.redraws}
+            redraws={redraws}
           />
           <Answer
             unSelectNumber={this.unSelectNumber}
-            selectedNumbers={this.state.selectedNumbers}
+            selectedNumbers={selectedNumbers}
           />
         </div>
         <br />
         <Numbers
-          selectedNumbers={this.state.selectedNumbers}
+          selectedNumbers={selectedNumbers}
           selectNumber={this.selectNumber}
-          usedNumbers={this.state.usedNumbers}
+          usedNumbers={usedNumbers}
         />
+        <br />
+        <DoneFrame doneStatus="Done Status Here ..." />
       </div>
     );
   }
