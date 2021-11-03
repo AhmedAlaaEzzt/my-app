@@ -4,6 +4,7 @@ import Button from "../button/button.js";
 import Answer from "../answer/answer.js";
 import Numbers from "../numbers/numbers.js";
 import DoneFrame from "../done-frame/done-frame.js";
+import { range } from "lodash";
 import { possibleCombinationSum } from "./game-helper.js";
 class Game extends Component {
   static randomNumber = () => Math.trunc(Math.random() * 9) + 1;
@@ -13,26 +14,54 @@ class Game extends Component {
     usedNumbers: [],
     numberOfStars: Game.randomNumber(),
     answerIsCorrect: null,
-    redraws: 5
+    redraws: 5,
+    doneStatus: null
+  };
+
+  updateDoneStatus = () => {
+    this.setState(prevState => {
+      if (prevState.usedNumbers.length === 9) {
+        return { doneStatus: "Done. Nice!" };
+      } else if (
+        prevState.redraws === 0 &&
+        !this.possibleSolutions(prevState)
+      ) {
+        return { doneStatus: "Game Over!" };
+      }
+    });
+  };
+
+  possibleSolutions = ({ numberOfStars, usedNumbers }) => {
+    const possibleNumbers = range(1, 10).filter(
+      number => usedNumbers.indexOf(number) === -1
+    );
+
+    return possibleCombinationSum(possibleNumbers, numberOfStars);
   };
 
   redraw = () => {
     if (this.state.redraws === 0) return;
-    this.setState(prevState => ({
-      numberOfStars: Game.randomNumber(),
-      answerIsCorrect: null,
-      selectedNumbers: [],
-      redraws: prevState.redraws - 1
-    }));
+    this.setState(
+      prevState => ({
+        numberOfStars: Game.randomNumber(),
+        answerIsCorrect: null,
+        selectedNumbers: [],
+        redraws: prevState.redraws - 1
+      }),
+      this.updateDoneStatus
+    );
   };
 
   acceptAnswer = () => {
-    this.setState(prevState => ({
-      usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
-      selectedNumbers: [],
-      answerIsCorrect: null,
-      numberOfStars: Game.randomNumber()
-    }));
+    this.setState(
+      prevState => ({
+        usedNumbers: prevState.usedNumbers.concat(prevState.selectedNumbers),
+        selectedNumbers: [],
+        answerIsCorrect: null,
+        numberOfStars: Game.randomNumber()
+      }),
+      this.updateDoneStatus
+    );
   };
 
   checkAnswer = () => {
@@ -67,7 +96,8 @@ class Game extends Component {
       answerIsCorrect,
       selectedNumbers,
       usedNumbers,
-      redraws
+      redraws,
+      doneStatus
     } = this.state;
     return (
       <div className="container">
@@ -89,13 +119,15 @@ class Game extends Component {
           />
         </div>
         <br />
-        <Numbers
-          selectedNumbers={selectedNumbers}
-          selectNumber={this.selectNumber}
-          usedNumbers={usedNumbers}
-        />
-        <br />
-        <DoneFrame doneStatus="Done Status Here ..." />
+        {doneStatus ? (
+          <DoneFrame doneStatus={doneStatus} />
+        ) : (
+          <Numbers
+            selectedNumbers={selectedNumbers}
+            selectNumber={this.selectNumber}
+            usedNumbers={usedNumbers}
+          />
+        )}
       </div>
     );
   }
