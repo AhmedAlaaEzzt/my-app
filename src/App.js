@@ -1,6 +1,6 @@
 import "./App.css";
-import CardList from "./Components/card-list/card-list";
-import Form from "./Components/form/From";
+import CardList from "./components/card-list/card-list";
+import Form from "./components/form/From";
 import { Component } from "react";
 class App extends Component {
   state={cards:[]}
