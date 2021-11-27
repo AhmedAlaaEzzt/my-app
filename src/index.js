@@ -6,10 +6,22 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import "tachyons";
 import App from "./App";
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import {searchRobots} from './reducers.js'
 
+const store = createStore(searchRobots) //it should be rootReducer
+
+
+
+	//provider component will take care of passing down the store to all the components 
+	//down the componet tree from the app {connect} will finish this connection
 ReactDOM.render(
+
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
