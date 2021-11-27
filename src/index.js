@@ -7,10 +7,12 @@ import reportWebVitals from "./reportWebVitals";
 import "tachyons";
 import App from "./App";
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {searchRobots} from './reducers.js'
+import {createLogger} from 'redux-logger'
 
-const store = createStore(searchRobots) //it should be rootReducer
+const logger = createLogger();//middleware
+const store = createStore(searchRobots, applyMiddleware(logger)) //it should be rootReducer
 
 
 
