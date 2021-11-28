@@ -7,12 +7,15 @@ import reportWebVitals from "./reportWebVitals";
 import "tachyons";
 import App from "./App";
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
-import {searchRobots} from './reducers.js'
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {searchRobots, requestRobots} from './reducers.js'
 import {createLogger} from 'redux-logger'
+import thunkMiddleware from 'redux-thunk';
 
+
+const rootReducer = combineReducers({searchRobots, requestRobots})
 const logger = createLogger();//middleware
-const store = createStore(searchRobots, applyMiddleware(logger)) //it should be rootReducer
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware,logger)) //it should be rootReducer
 
 
 

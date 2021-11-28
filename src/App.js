@@ -3,53 +3,40 @@ import CardList from "./components/card-list/card-list";
 import SearchBox from "./components/search-box/search-box";
 import { Component } from "react";
 import "./App.css";
-import { setSearchField } from "./actions.js";
+import { setSearchField, requestRobots } from "./actions.js";
 import { connect } from "react-redux";
 
 //what state i should listen to? (mapStateToProps)
 const mapStateToProps = (state) => {
   return {
-    searchField: state.searchField,
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error
   };
 };
 
 //what dispatch or action is should listen to? (mapDispatchToProps)
 const mapDispatchToProps = (dispatch) => ({
   onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+  onRequestRobots: ()=> requestRobots(dispatch) 
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      robots: [],
-      // searchField: "",
-    };
 
-    console.log("constructor");
-  }
 
   componentDidMount() {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((users) => {
-        setTimeout(() => this.setState({ robots: users }), 0);
-      });
+    this.props.onRequestRobots()
   }
 
-  // onSearchChange = (event) => {
-  //   this.setState({ searchField: event.target.value });
-  // };
 
   render() {
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, robots, isPending } = this.props;
 
-    const filteredRobots = this.state.robots.filter((robot) =>
+    const filteredRobots = robots.filter((robot) =>
       robot.name.toLowerCase().includes(searchField.toLowerCase())
     );
-    if (this.state.robots.length) {
+    if (robots.length) {
       return (
         <div className="tc">
           <h1 className="f1">RoboFriends</h1>
@@ -57,8 +44,10 @@ class App extends Component {
           <CardList robots={filteredRobots} />
         </div>
       );
-    } else {
+    } else if(isPending) {
       return <h1 className="tc">Loading.......</h1>;
+    } else {
+      return <h1 className="tc">Error.......</h1>;
     }
   }
 }
