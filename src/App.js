@@ -6,19 +6,17 @@ import "./App.css";
 import { setSearchField } from "./actions.js";
 import { connect } from "react-redux";
 
-	//what state i should listen to? (mapStateToProps)
-	const mapStateToProps =state=>{
-		return {
-			searchField: state.searchField
-		}
-	}
+//what state i should listen to? (mapStateToProps)
+const mapStateToProps = (state) => {
+  return {
+    searchField: state.searchField,
+  };
+};
 
-  //what dispatch or action is should listen to? (mapDispatchToProps)
-	const mapDispatchToProps=(dispatch)=>({
-		onSearchChange:(event)=> dispatch(setSearchField(event.target.value))
-	})
-
-
+//what dispatch or action is should listen to? (mapDispatchToProps)
+const mapDispatchToProps = (dispatch) => ({
+  onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+});
 
 class App extends Component {
   constructor(props) {
@@ -46,14 +44,11 @@ class App extends Component {
   // };
 
   render() {
-    const {searchField, onSearchChange} = this.props;
+    const { searchField, onSearchChange } = this.props;
 
-    const filteredRobots = this.state.robots.filter((robot) => {
-      if (
-        robot.name.toLowerCase().includes(searchField.toLowerCase())
-      )
-        return robot;
-    });
+    const filteredRobots = this.state.robots.filter((robot) =>
+      robot.name.toLowerCase().includes(searchField.toLowerCase())
+    );
     if (this.state.robots.length) {
       return (
         <div className="tc">
