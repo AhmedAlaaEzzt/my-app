@@ -1,11 +1,14 @@
-body{
+body {
   background: grey;
-}
-.book-keeper{
   margin: 20px;
 }
 
-.book-keeper nav{
+body main {
+  padding: 1rem 0;
+}
+
+
+.book-keeper nav {
   border-bottom: solid 1px;
   padding-bottom: 1rem;
 }
