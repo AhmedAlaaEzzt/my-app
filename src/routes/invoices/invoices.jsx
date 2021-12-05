@@ -6,7 +6,7 @@ export default function Invoices() {
     <div className="invoices-list">
       <nav>
         {invoices.map(invoice =>(
-          <div className='invoice'>{invoice.name}x</div>
+          <div className='invoice'>{invoice.name}</div>
         ))}
       </nav>
     </div>
