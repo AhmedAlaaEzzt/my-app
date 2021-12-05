@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import Expenses from "./routes/expensives";
-import Invoices from "./routes/invoices";
+import Expenses from "./routes/expensives/expensives.jsx";
+import Invoices from "./routes/invoices/invoices.jsx";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,9 +13,10 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="expenses" element={<Expenses />} />
-        <Route path="invoices" element={<Invoices />} />
+        <Route path="/" element={<App />}>
+          <Route path="expenses" element={<Expenses />} />
+          <Route path="invoices" element={<Invoices />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
