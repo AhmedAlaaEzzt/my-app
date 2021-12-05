@@ -6,3 +6,9 @@
   border-right: solid 1px;
   padding: 1rem;
 }
+
+
+.invoices-list .invoice{
+  display: block; 
+  margin: 1rem 0
+}

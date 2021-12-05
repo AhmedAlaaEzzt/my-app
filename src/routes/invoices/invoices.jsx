@@ -1,12 +1,12 @@
 import {getInvoices} from '../../database/invoices.js';
-
+import './invoices.css';
 export default function Invoices() {
   let invoices = getInvoices();
   return (
     <div className="invoices-list">
       <nav>
         {invoices.map(invoice =>(
-          <div>{invoice.name}</div>
+          <div className='invoice'>{invoice.name}x</div>
         ))}
       </nav>
     </div>
