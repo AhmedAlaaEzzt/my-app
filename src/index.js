@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import Expenses from "./routes/expensives/expensives.jsx";
 import Invoices from "./routes/invoices/invoices.jsx";
 import PageNotFound from "./routes/page-not-found/page-not-found.jsx";
+import Invoice from "./routes/invoice/invoice.jsx";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -16,7 +17,9 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="expenses" element={<Expenses />} />
-          <Route path="invoices" element={<Invoices />} />
+          <Route path="invoices" element={<Invoices />} >
+            <Route path=":invoiceId" element={<Invoice />} />
+          </Route>
           <Route path="*" element={<PageNotFound />} />
 
         </Route>

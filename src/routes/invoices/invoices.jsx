@@ -1,6 +1,6 @@
 import { getInvoices } from "../../database/invoices.js";
 import "./invoices.css";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 export default function Invoices() {
   let invoices = getInvoices();
   return (
@@ -16,6 +16,7 @@ export default function Invoices() {
           </Link>
         ))}
       </nav>
+      <Outlet />
     </div>
   );
 }
