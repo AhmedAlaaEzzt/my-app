@@ -1,6 +1,12 @@
 import { getInvoices } from "../../database/invoices.js";
 import "./invoices.css";
-import { NavLink, Outlet, useSearchParams } from "react-router-dom";
+import { NavLink, Outlet, useSearchParams,useLocation } from "react-router-dom";
+
+
+function MyCustomLink({ to, ...props }) {
+  let location = useLocation();
+  return <NavLink to={to + location.search} {...props} />;
+}
 
 export default function Invoices() {
   let invoices = getInvoices();
@@ -31,13 +37,13 @@ export default function Invoices() {
             return invoice.name.toLowerCase().includes(filter.toLowerCase());
           })
           .map((invoice) => (
-            <NavLink
+            <MyCustomLink
               className="invoice"
               to={`/invoices/${invoice.number}`}
               key={invoice.number}
             >
               {invoice.name}
-            </NavLink>
+            </MyCustomLink>
           ))}
           
       </nav>
