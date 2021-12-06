@@ -7,6 +7,10 @@
   padding: 1rem;
 }
 
+.invoices-list nav a.active{
+  color: red;
+}
+
 
 .invoices-list .invoice{
   display: block; 
