@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
@@ -6,9 +7,15 @@ function Home() {
         <div>
           <nav>
             <ul>
-              <li>Home</li>
-              <li>About</li>
-              <li>Users</li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/users">Users</Link>
+              </li>
             </ul>
           </nav>
         </div>
