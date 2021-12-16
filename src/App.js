@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import ContactList from "./components/contact-list/contact-list.component";
+// import contactsData from "./data/contacts.data"; //fake data
+import * as ContactsAPI from "./utils/ContactsAPI";
+import CreateContact from "./components/create-contact/create-contact.component";
+import { Route } from "react-router-dom";
 
-function App() {
+function App(props) {
+  console.log(props);
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    ContactsAPI.getAll().then((contacts) => setContacts(contacts));
+  }, []);
+
+  const removeContact = (contact) => {
+    setContacts(contacts.filter((c) => c.id !== contact.id));
+    ContactsAPI.remove(contact);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Route exact path="/">
+        <ContactList
+          removeContact={removeContact}
+          contacts={contacts}
+        />
+      </Route>
+
+      <Route path="/create" component={CreateContact} />
     </div>
   );
 }
