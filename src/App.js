@@ -1,5 +1,5 @@
 import './App.css';
-import CardList from './Components/card-list/card-list'
+import CardList from './components/card-list/card-list'
 import data from './data/face-data';
 function App() {
   return (
