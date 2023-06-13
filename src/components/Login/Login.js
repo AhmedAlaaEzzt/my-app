@@ -9,7 +9,8 @@ export const Login = () => {
   };
 
   return (
-    <Container className="w-25">
+    <Container className="w-25 border p-3">
+      <h1 className="mb-3">Login</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
